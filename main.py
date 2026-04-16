@@ -9,8 +9,10 @@ st.set_page_config(page_title="Staff Attendance System", layout="wide")
 def init_connection():
     try:
         scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-        creds = ServiceAccountCredentials.from_json_keyfile_name("service_account.json", scope)
-        client = gspread.authorize(creds)
+        # Secrets ထဲက key ကို ယူသုံးမယ်လို့ ပြောလိုက်တာပါ
+creds_dict = st.secrets["gcp_service_account"]
+creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+client = gspread.authorize(creds)
         
         # သင်၏ Sheet ID ကို ဤနေရာတွင် စစ်ဆေးပါ
         SHEET_ID = "1Lnh_L7v7vDs-6WRosRlKXzNSoqANljgAKRc5VvAIpFs"
