@@ -16,7 +16,7 @@ def init_connection():
         client = gspread.authorize(creds)
         
         # သင့် Google Sheet ID (မူရင်းအတိုင်း ထားပါ)
-        SHEET_ID = "1Lnh_L7v7vDs-6WRosRlKXzNSoqANljgAKRc5VvAIpFs"
+        SHEET_ID = "1p9o6B-88uLhVBy_nC4-N1zX_F5j66C3v87z9q9S_I8U"
         return client.open_by_key(SHEET_ID)
     except Exception as e:
         st.error(f"❌ Connection Error: {e}")
