@@ -11,7 +11,7 @@ def init_connection():
         scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
         
         # Secrets ထဲက key ကို ယူသုံးခြင်း
-        creds_dict = st.secrets["gcp_service_account"]
+        creds_dict = st.secrets["gcp_service_account"].to_dict() #
         creds_dict["private_key"] = creds_dict["private_key"].replace("\\n", "\n")
         creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
         client = gspread.authorize(creds)
