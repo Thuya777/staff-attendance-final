@@ -8,20 +8,17 @@ st.set_page_config(page_title="Staff Attendance System", layout="wide")
 
 def init_connection():
     try:
-        scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-        
         # Secrets ထဲက key ကို ယူသုံးခြင်း
         creds_dict = st.secrets["gcp_service_account"]
-        creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+        creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict)
         client = gspread.authorize(creds)
         
-        # သင့် Google Sheet ID (မူရင်းအတိုင်း ထားပါ)
+        # သင့် Google Sheet ID
         SHEET_ID = "1p9o6B-88uLhVBy_nC4-N1zX_F5j66C3v87z9q9S_I8U"
         return client.open_by_key(SHEET_ID)
     except Exception as e:
         st.error(f"❌ Connection Error: {e}")
         return None
-
 sh = init_connection()
 
 if sh:
